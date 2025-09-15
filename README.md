@@ -1,75 +1,102 @@
-## Jobtest som Backendudvikler hos Side-Walk
-Først vil jeg sige tak, fordi du vil deltage i vores rekruterings process. Du har nu forket vores git repo, og skal i gang med testen.
+# Jobtest – Backendudvikler hos Side-Walk
+Først og fremmest tak, fordi du ønsker at deltage i vores rekrutteringsproces.  
+Du har nu forket vores Git-repo og er klar til at gå i gang med testen.
 
-### Tidsforbrug
-Du må maks bruge 3,5 time på løsning af testen.
+---
 
-### Aflevering af test
-Du skal fremsende et link til din public fork, hvor din opgaveløsning ligger på senest d. 22/6-25.
+## Tidsforbrug
+- Du må maksimalt bruge **3,5 time** på testen.
+- Brug din tid klogt – vi vurderer både kvalitet, struktur og prioritering.
 
-### Regler
-Der må ikke bruges chatGPT eller anden AI til besvarelse og løsning af opgaven!!
+---
 
-## Opsætning af testmiljø
-Vi har sat projektet i docker så det første du skal gøre:
-kopier .env.docker.exemple til .env
+## Aflevering
+- Upload din løsning til en **public fork** af repoet.
+- Send os et link til din fork
 
-sæt http://jobtest.test ind i din hosts fil, så du kan fange applikationen.
+---
 
-Kørfølgende kommendoer:
-- docker compose up
+## Regler
+- Du må **ikke bruge ChatGPT eller anden AI** til løsning af opgaven.
+- Du må gerne benytte dokumentation, officielle guides og almindelige ressourcer (StackOverflow, Laravel docs, PHP docs, osv.).
+
+---
+## Opsætning af testmiljø (se pkt. "Alternativt miljø")
+
+Projektet er sat op til Docker. Følg disse trin for at komme i gang:
+
+1. Kopiér `.env.docker.example` til `.env`.
+2. Tilføj `http://jobtest.test` i din hosts-fil, så du kan tilgå applikationen.
+3. Kør:
+
+``` 
+docker compose up
+```
+
 log derefter ind i containeren og kør
-- composer install
-- npm install
-- npm run dev
 
-herefter kan du logge ind med brugeren
-brugernavn: test@test.test
-kode: Test123
+```
+composer install
+npm install
+npm run dev
+```
 
-Ønsker du at bruge andet end docker f.eks Laravel Herd eller andet dev miljø er du velkommen til at sætte dette op inden testen begynder.
+4. Applikationen kører nu på: http://jobtest.test
+5. Log ind med:
+- Brugernavn: test@test.test
+- Kodeord: Test123
 
- ## Test/Opgave
- De 4 opgaver du skal løse er beskrevet nedenfor, og rækkefølgende er op til dig.
+## Alternativt miljø
+Ønsker du at bruge et andet setup (fx Laravel Herd eller dit eget dev-miljø), er du velkommen – men sørg for, at alt virker inden du starter testen.
 
-1) Der skal sættes relationer op mellem: 
+## Test/Opgave
+Du skal løse 3 opgaver og besvare nogle spørgsmål. Rækkefølgen er op til dig.
 
+### Opgave 1 – Relationer
+Sæt relationerne korrekt op mellem følgende modeller:
 - User og Project
 - Project og Comment
 
-2) Optimer projectcontrolleren
+### Opgave 2 – Controller-optimering
+- Gennemgå og optimer `ProjectController`.
 
-3) Der er lagt to fejl ind som er relateret til hinanden, denne skal findes og rettes.
+### Opgave 3 – Fejlfinding
+- I projektet er der bevidst lavet to fejl, som hænger sammen.
 
-4) Besvar spørgsmålene i denne README FIL, under hver spørgsmål.
+### Teoretiske spørgsmål
 
-``` Spørgsmål 1 ```
+Besvar nedenstående spørgsmål direkte i denne **README.md** under hvert spørgsmål.
 
-``` RElation morph ```
+---
 
-*Indsæt svar 1*
+**Spørgsmål 1:**  
+Forklar, hvad en **morph relation** er i Laravel, og giv et eksempel på en situation, hvor den er nyttig.
 
-``` Spørgsmål 2 ```
+*Indsæt svar her*  
 
-``` Du har en database med mange relationer hvor company er den model hvor alle relationer til et given virksomhed har relationer til. Hvordan sikre du dig, at data slettes i relationsmodellerne, når du sletter en givent virksomhed? ```
+---
 
-*Indsæt Svar 2*
+**Spørgsmål 2:**  
+Du har en database med mange relationer, hvor `Company` er den centrale model.  
+Hvordan sikrer du, at tilhørende data i relationsmodellerne slettes korrekt, når du sletter en virksomhed?
 
+*Indsæt svar her*
 
-``` Spørgsmål 3```
+---
 
-``` Når du skal lave funktionskode, f.eks. du behandler model data inden du skal sende det til et view, hvor placere du funktionskoden? ```
+**Spørgsmål 3:**  
+Når du skal lave funktionskode (fx databehandling på en model, inden den sendes til et view), hvor bør denne kode placeres – og hvorfor?
 
-*Indsæt Svar 3*
+*Indsæt svar her*
 
+---
 
-``` Spørgsmål 4 ```
+**Spørgsmål 4:**  
+Du skal arbejde på en applikation uden et PHP-framework.  
+Hvordan ville du håndtere oprettelse af et inputfelt og gemme data i databasen – og hvilke overvejelser skal du gøre dig ift. sikkerhed og struktur?
 
-``` Du sidder og skal arbejde for en kunde, hvis applikation køre uden PHP framework. Du skal lave et input felt og gemme det i databasen. Hvilke overvejelser gør du?  ```
+*Indsæt svar her*
 
-*Indsæt Svar 4*
-
-
-## Efter testen
-Vi reviewer din løsning i ugen efter d. 22/6-25, hvorefter du vil få feedback på testudførslen. 
-Herefter vil du enten få et begrundet afslag eller blive indkaldt til samtale, som er sidste forløb i rekrutteringsprocessen. 
+## Efter aflevering af testen
+Vi gennemgår din løsning hurtigst muligt og giver dig derefter feedback på din besvarelse.  
+Vi glæder os til at modtage din besvarelse.
