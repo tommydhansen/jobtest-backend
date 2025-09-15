@@ -39,6 +39,9 @@ log derefter ind i containeren og kør
 composer install
 npm install
 npm run dev
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
 ```
 
 4. Applikationen kører nu på: http://jobtest.test
