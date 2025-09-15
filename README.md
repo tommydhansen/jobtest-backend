@@ -16,11 +16,6 @@ Du har nu forket vores Git-repo og er klar til at gå i gang med testen.
 
 ---
 
-## Regler
-- Du må **ikke bruge ChatGPT eller anden AI** til løsning af opgaven.
-- Du må gerne benytte dokumentation, officielle guides og almindelige ressourcer (StackOverflow, Laravel docs, PHP docs, osv.).
-
----
 ## Opsætning af testmiljø (se pkt. "Alternativt miljø")
 
 Projektet er sat op til Docker. Følg disse trin for at komme i gang:
