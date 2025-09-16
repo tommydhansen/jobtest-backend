@@ -70,7 +70,7 @@ Besvar nedenstående spørgsmål direkte i denne **README.md** under hvert spør
 **Spørgsmål 1:**  
 Forklar, hvad en **morph relation** er i Laravel, og giv et eksempel på en situation, hvor den er nyttig.
 
-*Indsæt svar her*  
+*En morph relation betyder at en relation kan bestå af forskellige Modeler. F.eks. hvis man har en fil uploader, hvor der bliver gjort forskel på filtype (dokumenter, billeder, videoer), kan man lave en morph relation sådan at hver filtype har sin egen model og tabel, men stadig fremgår i den samme relation collection "files"*
 
 ---
 
@@ -78,14 +78,20 @@ Forklar, hvad en **morph relation** er i Laravel, og giv et eksempel på en situ
 Du har en database med mange relationer, hvor `Company` er den centrale model.  
 Hvordan sikrer du, at tilhørende data i relationsmodellerne slettes korrekt, når du sletter en virksomhed?
 
-*Indsæt svar her*
+*Det kan gøre på forskellige måder.*
+* Man kan sætte Cascading Deletes på Foreign Keys, sådan at når man sletter en "Company" som andre ting der relatere til den via en foreign key "company_id", så bliver disse også slettet.
+* Man kan sætte en "deleting" event på Company modelen, hvis man definere hvad der også skal slettes, når en Company slettes.
+* Til sidst kan man altid lave en manuel sletning, hvor man har en delete method på modeln, som sørger for at slette alle relationer, inden den centrale model slettes, Eller man kan lave en service klasse og metode til det.
+
 
 ---
 
 **Spørgsmål 3:**  
 Når du skal lave funktionskode (fx databehandling på en model, inden den sendes til et view), hvor bør denne kode placeres – og hvorfor?
 
-*Indsæt svar her*
+*Logikken kunne laves i den controller der sørger for at sende data til view'et. Men jeg ville vælge at lave en service klasse for den givne model, hvor jeg kan have alt logic af databehandling. Så bliver jeg fri for at have en "tyk" controller"*
+
+*Hvis jeg skulle gå skridtet videre, ville jeg overveje om der også var brug for et repository, hvor jeg skrive alle metoder der indeholder database-kald, sådan at jeg for en opdeling af hvad der håndtere formidling af data (controlleren), håndtering af data (servicen), og hentning og gemning af data (repositoryet).*
 
 ---
 
@@ -93,7 +99,23 @@ Når du skal lave funktionskode (fx databehandling på en model, inden den sende
 Du skal arbejde på en applikation uden et PHP-framework.  
 Hvordan ville du håndtere oprettelse af et inputfelt og gemme data i databasen – og hvilke overvejelser skal du gøre dig ift. sikkerhed og struktur?
 
-*Indsæt svar her*
+*Til at gemme data i database ville jeg bruge prepared statements med enten mysqli eller PDO, sådan at alt rå data komme igennem et tjek for skadelige tegn, for at sikre mod sql injection*
+
+*Til validering af data, vil jeg gøre brug af et data object, hvis muligt, som repræsentere den data jeg har sendt fra formen.*\
+*Hvis jeg f.eks. havde en form med en title, en alder input, og en option af hvilken landsdel jeg bor i, ville jeg lave følgende klasse*
+```
+class formData {
+    public function __construct(
+        public string $title,
+        public int $age,
+        //Enum
+        public CountryRegion $region,
+    )
+}
+```
+
+*På den måde kan jeg få en klasse til at validere min data.*\
+*Hvis det ikke er muligt at bruge en klasse, ville jeg sørge for at validere min data ved at tjekke dataens type manuelt for at sikre mig at jeg ikke prøver at indæstte en string i et int field.*
 
 ## Efter aflevering af testen
 Vi gennemgår din løsning hurtigst muligt og giver dig derefter feedback på din besvarelse.  
