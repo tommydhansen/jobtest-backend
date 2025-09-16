@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function index()
     {
         return inertia('Projects', [
-            'projects' => Project::all(),
+            'projects' => Project::paginate(),
         ]);
     }
 
@@ -25,13 +25,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $comments = Comment::all()->filter(function ($comments) use ($project) {
-            return $comments->project->id == $project->id;
-        });
-
-        $project->setRelation('comments', $comments);
         return inertia('Project', [
-            'project' => $project,
+            'project' => $project->load('comments'),
         ]);
     }
 

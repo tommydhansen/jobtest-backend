@@ -3,11 +3,22 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import { AnyNode } from "postcss";
 
-interface Props {
-    project: any;
+export interface Project {
+    created_at: string;
+    description: string;
+    id: number;
+    owner: number;
+    title: string;
+    updated_at: string;
+    comments: Comment[];
 }
 
-const props = defineProps<Props>();
+interface Comment {
+    id: number;
+    comments: string;
+}
+
+const props = defineProps<{project: Project}>();
 </script>
 
 <template>

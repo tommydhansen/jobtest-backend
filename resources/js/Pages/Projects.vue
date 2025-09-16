@@ -20,14 +20,22 @@ export interface Project {
     updated_at: string;
 }
 
+export interface PaginatedProjects {
+    current_page: number;
+    data: Project[];
+    // Add other fields like total, per_page, etc. if needed
+}
+
 const tableState = ref<ExposedTableState>();
 const props = defineProps<{
-    projects: any;
+    projects: PaginatedProjects;
 }>();
 
 onMounted(() => {
-    if (props.projects?.current_page && tableState.value)
-        tableState.value.DataTable.currentPage = props.projects.current_page;
+    if (props.projects?.current_page && tableState.value) {
+        tableState.value.DataTable.currentPage = props.projects.current_page-1;
+    }
+
 });
 
 const data = ref(props.projects);
@@ -100,13 +108,13 @@ const fetchData = async (api: string | URL): Promise<any> => {
                             totalElements() {
                                 return data?.total ?? 0;
                             },
-                        } : DefaultPaginator(props.projects)"
+                        } : DefaultPaginator(props.projects.data)"
                         :page-sizes="[50]"
                         :show-search-bar="false"
                         ref="tableState"
                     />
 
-                    INSÆT PROJEKT INDEX
+                    INDSÆT PROJEKT INDEX
                 </div>
             </div>
         </div>
