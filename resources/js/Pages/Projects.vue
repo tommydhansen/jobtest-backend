@@ -4,9 +4,9 @@ import Welcome from "@/Components/Welcome.vue";
 import {
     DataTable,
     DefaultPaginator,
-    ExposedTableState,
-    LaravelSimplePaginator,
+    LaravelSimplePaginator
 } from "@sidewalk/vue3-datatable";
+import type { ExposedTableState } from "@sidewalk/vue3-datatable";
 import { onMounted, ref } from "vue";
 import { router } from "@inertiajs/vue3";
 import { EyeIcon } from "lucide-vue-next";
@@ -30,6 +30,14 @@ const tableState = ref<ExposedTableState>();
 const props = defineProps<{
     projects: PaginatedProjects;
 }>();
+
+const columns = [
+    { key: 'id', label: 'ID' },
+    { key: 'title', label: 'Title' },
+    { key: 'description', label: 'Description' },
+    { key: 'owner', label: 'Owner' },
+    { key: 'created_at', label: 'Created At' },
+];
 
 onMounted(() => {
     if (props.projects?.current_page && tableState.value) {
@@ -58,6 +66,7 @@ const fetchData = async (api: string | URL): Promise<any> => {
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                     <DataTable
+                        :columns="columns"
                         :actions="[
                             {
                                 icon: EyeIcon,

@@ -18,7 +18,7 @@ class ProjectController extends Controller
     {
         return inertia('Projects', [
             //'projects' => Project::query()->where(['owner' => Auth::user()->id])->paginate()
-            'projects' => Project::paginate(),
+            'projects' => Project::simplePaginate(2),
         ]);
     }
 
